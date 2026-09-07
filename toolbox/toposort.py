@@ -14,10 +14,11 @@ def toposort(graph):
 
     >>> toposort({"app": ["lib"], "lib": ["core"], "core": []})
     ['core', 'lib', 'app']
-    >>> toposort({"a": ["b"], "b": ["a"]})
-    Traceback (most recent call last):
-        ...
-    toposort.CycleError: graph contains a cycle
+    >>> try:
+    ...     toposort({"a": ["b"], "b": ["a"]})
+    ... except CycleError as exc:
+    ...     print(exc)
+    graph contains a cycle
     """
     dependents = {}
     indegree = {}
